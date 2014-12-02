@@ -15,7 +15,7 @@ apt-get install autoconf automake
 You may also need these for some build options of PHP:
 
 ```
-apt-get install libicu-dev libmcrypt-dev libreadline-dev
+apt-get install libicu-dev libmcrypt-dev libreadline-dev libxml2-dev libbz2-dev
 ```
 
 Adjust the `BUILD_TARGET` in the script. By default PHP binaries are installed to `/srv/php`.
