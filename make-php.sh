@@ -39,11 +39,8 @@ fi
 
 cd $PHP
 
-apt-get -y install libicu-dev libmcrypt-dev libreadline-dev
-
 # get pecl packages to compile statically into the binary
 if [ -f "../../$BUILD_NAME.pecl.conf" ] ; then
-	apt-get -y install autoconf automake
 	while read line
 	do
 		cd ext
