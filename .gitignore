@@ -1,0 +1,4 @@
+/build
+/*.conf
+!/example.conf
+!/example.pecl.conf
