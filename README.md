@@ -24,6 +24,7 @@ Usage
 -----
 
 Create a `*.conf` file for each build config and a `*.pecl.conf` file if you want to statically link pecl extensions into the binary.
+See `example.conf` and `example.pecl.conf` for examples.
 
 Run the script (assuming your config is `myconfig.conf`):
 
