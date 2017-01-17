@@ -13,4 +13,5 @@ KEYS="$KEYS FC9C83D7" # Johannes Schlüter <johannes@php.net>
 KEYS="$KEYS 9C0D5763" # Anatol Belski <ab@php.net>
 KEYS="$KEYS 7BD5DCD0" # Davey Shafik <davey@php.net>
 
-gpg --batch --keyserver pgp.mit.edu --recv-keys $KEYS
+# alternative keyserver: pgp.mit.edu
+gpg --batch --keyserver pool.sks-keyservers.net --recv-keys $KEYS
