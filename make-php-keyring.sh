@@ -11,6 +11,6 @@ KEYS="$KEYS 7267B52D" # David Soria Parra <dsp@php.net>
 KEYS="$KEYS 5DA04B5D" # Stanislav Malyshev (PHP key) <stas@php.net>
 KEYS="$KEYS FC9C83D7" # Johannes Schlüter <johannes@php.net>
 KEYS="$KEYS 9C0D5763" # Anatol Belski <ab@php.net>
-KEYS="$KEYS 33CFC8B3" # Ferenc Kovacs <tyrael@php.net>
+KEYS="$KEYS 7BD5DCD0" # Davey Shafik <davey@php.net>
 
 gpg --keyserver pgp.mit.edu --recv-keys $KEYS
