@@ -61,13 +61,15 @@ echo ""
 echo "running configure..."
 echo ""
 PREFIX="$BUILD_TARGET/${PHP}_$BUILD_NAME"
-./configure --prefix=$PREFIX --sysconfdir=/etc --mandir=$PREFIX/man --with-config-file-path=$PREFIX/conf $MAKECONFIG
+./configure --prefix=$PREFIX --sysconfdir=/etc --mandir=$PREFIX/man --with-config-file-path=$PREFIX/conf $MAKECONFIG > configure.log || (cat configure.log && false)
 
 echo ""
 echo "make..."
 echo ""
-make -j 8
+make -j 8 > make.log || (cat make.log && false)
 make install
+
+rm make.log configure.log
 
 echo ""
 echo "success! Your PHP installation is now in $PREFIX."
