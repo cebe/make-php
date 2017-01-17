@@ -66,7 +66,7 @@ PREFIX="$BUILD_TARGET/${PHP}_$BUILD_NAME"
 echo ""
 echo "make..."
 echo ""
-make
+make -j 8
 make install
 
 echo ""
