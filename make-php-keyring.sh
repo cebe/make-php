@@ -1,7 +1,7 @@
 #!/bin/sh
 #
 # Adds all people who have signed PHP releases to GPG
-# http://php.net/downloads.php#gpg-5.6
+# http://php.net/downloads.php#gpg-7.1
 #
 
 KEYS=""
@@ -12,6 +12,8 @@ KEYS="$KEYS 5DA04B5D" # Stanislav Malyshev (PHP key) <stas@php.net>
 KEYS="$KEYS FC9C83D7" # Johannes Schlüter <johannes@php.net>
 KEYS="$KEYS 9C0D5763" # Anatol Belski <ab@php.net>
 KEYS="$KEYS 7BD5DCD0" # Davey Shafik <davey@php.net>
+KEYS="$KEYS 31CBD89E" # Joe Watkins <krakjoe@php.net>
+
 
 # alternative keyserver: pgp.mit.edu
 gpg --batch --keyserver pool.sks-keyservers.net --recv-keys $KEYS

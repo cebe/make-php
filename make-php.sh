@@ -12,8 +12,8 @@ PHP="php-$2"
 BUILD_NAME=$1
 BUILD_TARGET="/srv/php"
 
-URL="http://de1.php.net/get/$PHP.tar.bz2/from/this/mirror"
-SIG="http://de1.php.net/get/$PHP.tar.bz2.asc/from/this/mirror"
+URL="http://php.net/get/$PHP.tar.bz2/from/this/mirror"
+SIG="http://php.net/get/$PHP.tar.bz2.asc/from/this/mirror"
 
 echo "preparing to build PHP $PHP with config $BUILD_NAME..."
 # get build conf
