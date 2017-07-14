@@ -17,7 +17,7 @@ A more complete set of build tools:
 You may also need these for some build options of PHP:
 
     apt-get install  libicu-dev libmcrypt-dev libreadline-dev libxml2-dev libbz2-dev \
-                     openssl libssl-dev libcurl4-openssl-dev libjpeg8-dev libpng12-dev \
+                     openssl libssl-dev libcurl4-openssl-dev libjpeg-dev libpng-dev \
                      libfreetype6-dev libmm-dev libpq-dev
 
 After installing dependencies you can clone this repository.
