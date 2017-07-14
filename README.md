@@ -40,3 +40,6 @@ Run the script (assuming your config is `myconfig.conf`):
     ./make-php myconfig 7.0.12
 
 Afterwards you can use the `switch-php.sh` command to replace the existing `/usr/bin/php*` symlinks using debians `update-alternatives` system. `./switch-php.sh --reset` will restore the original PHP version that may be installed by apt.
+
+> Tip: To enable the switch-php command, you can link it to `/usr/local/bin`:
+> `ln -s /srv/php-src/switch-php.sh /usr/local/bin/switch-php`
