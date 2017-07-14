@@ -49,10 +49,14 @@ See `example.conf` and `example.pecl.conf` for examples.
 
 Run the script (assuming your config is `myconfig.conf`):
 
-
     ./make-php myconfig 7.0.12
 
 Afterwards you can use the `switch-php.sh` command to replace the existing `/usr/bin/php*` symlinks using debians `update-alternatives` system. `./switch-php.sh --reset` will restore the original PHP version that may be installed by apt.
 
 > Tip: To enable the switch-php command, you can link it to `/usr/local/bin`:
 > `ln -s /srv/php-src/switch-php.sh /usr/local/bin/switch-php`
+
+If you want to install PHP versions that are not officially released or pre-releases like alpha versions, you can specify a URL for the file to download. E.g. to install PHP 7.2.0alpha3 use the following command:
+
+    ./make-php.sh myconfig 7.2.0alpha3 https://downloads.php.net/~remi/php-7.2.0alpha3.tar.bz2 https://downloads.php.net/~remi/php-7.2.0alpha3.tar.bz2.asc
+
