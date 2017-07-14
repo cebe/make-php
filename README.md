@@ -6,6 +6,8 @@ A simple script to build different PHP versions
 Installation
 ------------
 
+### Dependencies
+
 At least the following packages are needed to run this:
 
     apt-get install  build-essential autoconf automake
@@ -20,6 +22,8 @@ You may also need these for some build options of PHP:
                      openssl libssl-dev libcurl4-openssl-dev libjpeg-dev libpng-dev \
                      libfreetype6-dev libmm-dev libpq-dev
 
+### Clone Repo
+
 After installing dependencies you can clone this repository.
 The location does not matter, but I use to put it under `/srv/php-src`:
 
@@ -27,6 +31,15 @@ The location does not matter, but I use to put it under `/srv/php-src`:
 
 You may want to adjust the `BUILD_TARGET` in the script.
 By default PHP binaries are installed to `/srv/php`.
+
+### GPG
+
+The script will check the signatures of the PHP tar files it downloads, so you need to add the keys of the PHP maintainers to
+you GPG trust DB. You can do it manually, or use the `make-php-keyring.sh` script:
+
+```
+./make-php-keyring.sh
+```
 
 Usage
 -----
