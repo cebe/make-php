@@ -1,10 +1,12 @@
 #!/bin/sh -e
 
 if [ "$2" = "" ] ; then
-	echo "usage: $0 <conf> <php-version>"
+	echo "usage: $0 <conf> <php-version> [<url> <sig-url>]"
 	echo ""
 	echo "<conf>        - the name of the config file without .conf"
 	echo "<php-version> - the PHP version to build. e.g. 5.6.2"
+	echo ""
+	echo "optionally you can specify a URL to download the tar file from and a signature URL to download the signature."
 	exit 1
 fi
 
@@ -12,8 +14,13 @@ PHP="php-$2"
 BUILD_NAME=$1
 BUILD_TARGET="/srv/php"
 
-URL="http://php.net/get/$PHP.tar.bz2/from/this/mirror"
-SIG="http://php.net/get/$PHP.tar.bz2.asc/from/this/mirror"
+if [ "$3" = "" ] ; then
+	URL="http://php.net/get/$PHP.tar.bz2/from/this/mirror"
+	SIG="http://php.net/get/$PHP.tar.bz2.asc/from/this/mirror"
+else
+	URL="$3"
+	SIG="$4"
+fi
 
 echo "preparing to build PHP $PHP with config $BUILD_NAME..."
 # get build conf
@@ -30,9 +37,15 @@ cd build
 if [ ! -d $PHP ] ; then
 
 	wget $URL -O $PHP.tar.bz2
-	wget $SIG -O $PHP.tar.bz2.asc
-
-	gpg --trust-model always --verify $PHP.tar.bz2.asc
+	if [ "$SIG" = "" ] ; then
+		echo "  !!!! !!! !!! !!! !!! !!! !!! !!! !!! !!! !!! !!! !!! !!!! "
+		echo "  !!! NO SIGNATURE GIVEN, FILE IS NOT VERIFIED WITH GPG !!!"
+		echo "  !!!! !!! !!! !!! !!! !!! !!! !!! !!! !!! !!! !!! !!! !!!! "
+		sleep 2
+	else
+		wget $SIG -O $PHP.tar.bz2.asc
+		gpg --trust-model always --verify $PHP.tar.bz2.asc
+	fi
 
 	tar xjf $PHP.tar.bz2
 fi
