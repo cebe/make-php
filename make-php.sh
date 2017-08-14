@@ -56,7 +56,7 @@ if [ ! -d $PHP ] ; then
 	    for f in ../../patches/$PHP/*.patch
 	    do
                 echo "  applying $f"
-	        git apply $f
+	        patch -p1 < $f
 	    done
 	    cd ..
 	fi
