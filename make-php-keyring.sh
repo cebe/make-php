@@ -16,5 +16,11 @@ KEYS="$KEYS F9BA0ADA31CBD89E" # Joe Watkins <krakjoe@php.net>
 KEYS="$KEYS DC9FF8D3EE5AF27F" # Remi Collet <remi@php.net>
 
 # alternative keyserver: pgp.mit.edu
-gpg --batch --keyserver pool.sks-keyservers.net --recv-keys $KEYS
+if [ "$1" != "" ] ; then
+    KEYSERVER="$1"
+fi
+if [ "$KEYSERVER" = "" ] ; then
+    KEYSERVER="pool.sks-keyservers.net"
+fi
+gpg --batch --keyserver $KEYSERVER --recv-keys $KEYS
 
