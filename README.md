@@ -1,7 +1,8 @@
 make-php
 ========
 
-A simple script to build different PHP versions
+A simple script to build different PHP versions for development. It uses the debian alternatives system to replace the 
+system-wide PHP binaries and allows resetting to defaults if the PHP binaries installed via the package manager should be used.
 
 Installation
 ------------
@@ -44,7 +45,10 @@ you GPG trust DB. You can do it manually, or use the `make-php-keyring.sh` scrip
 Usage
 -----
 
-Create a `*.conf` file for each build config and a `*.pecl.conf` file if you want to statically link pecl extensions into the binary.
+### Building a PHP binary 
+
+Create a `*.conf` file for each build config. If you want to statically link pecl extensions into the binary you may list the
+names of the extensions in `*.pecl.conf`.
 See `example.conf` and `example.pecl.conf` for examples.
 
 Run the script (assuming your config is `myconfig.conf`):
@@ -56,7 +60,17 @@ Afterwards you can use the `switch-php.sh` command to replace the existing `/usr
 > Tip: To enable the switch-php command, you can link it to `/usr/local/bin`:
 > `ln -s /srv/php-src/switch-php.sh /usr/local/bin/switch-php`
 
+### Builing alpha/beta releases
+
 If you want to install PHP versions that are not officially released or pre-releases like alpha versions, you can specify a URL for the file to download. E.g. to install PHP 7.2.0alpha3 use the following command:
 
     ./make-php.sh myconfig 7.2.0alpha3 https://downloads.php.net/~remi/php-7.2.0alpha3.tar.bz2 https://downloads.php.net/~remi/php-7.2.0alpha3.tar.bz2.asc
+
+### Applying patches
+
+If you want to apply patches to the PHP source code, e.g. to fix some bugs or apply workarounds in your specific version, you
+can place a `.patch` file in the `patches/php-$VERSION` directory. All patch files found in that directory will be applied
+before building PHP.
+
+E.g. to apply the [fix for finding cURL on debian](https://github.com/php/php-src/pull/2632) on PHP 7.1.8, you can create a file containing the [patch](https://patch-diff.githubusercontent.com/raw/php/php-src/pull/2632.patch) in `patches/php-7.1.8/curlfix.patch`.
 
