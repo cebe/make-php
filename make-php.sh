@@ -50,7 +50,7 @@ if [ ! -d $PHP ] ; then
 	tar xjf $PHP.tar.bz2
 	
 	# apply patches if any are provided
-	if [ -d "../patches/$PHP" ] ; then
+	if [ -e "../patches/$PHP" ] ; then
 	    echo "applying patches..."
 	    cd $PHP
 	    for f in ../../patches/$PHP/*.patch
