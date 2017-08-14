@@ -48,6 +48,16 @@ if [ ! -d $PHP ] ; then
 	fi
 
 	tar xjf $PHP.tar.bz2
+	
+	# apply patches if any are provided
+	if [ -d "../patches/$PHP" ] ; then
+	    cd $PHP
+	    for f in ../../patches/$PHP/*.patch
+	    do
+	        git apply $f
+	    done
+	    cd ..
+	fi
 fi
 
 cd $PHP
