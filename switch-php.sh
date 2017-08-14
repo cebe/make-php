@@ -38,23 +38,18 @@ if [ ! "$1" = "--reset" ] ; then
 fi
 
 echo "removing existing alternatives..."
-update-alternatives --auto php
 for p in $(update-alternatives --list php | grep "$PHPDIR") ; do
 	update-alternatives --remove php $p
 done
-update-alternatives --auto phpize
 for p in $(update-alternatives --list phpize | grep "$PHPDIR") ; do
 	update-alternatives --remove phpize $p
 done
-update-alternatives --auto php-config
 for p in $(update-alternatives --list php-config | grep "$PHPDIR") ; do
 	update-alternatives --remove php-config $p
 done
-update-alternatives --auto php-cgi
 for p in $(update-alternatives --list php-cgi | grep "$PHPDIR") ; do
 	update-alternatives --remove php-cgi $p
 done
-update-alternatives --auto php-fpm
 for p in $(update-alternatives --list php-fpm | grep "$PHPDIR") ; do
 	update-alternatives --remove php-fpm $p
 done
