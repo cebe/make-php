@@ -51,9 +51,11 @@ if [ ! -d $PHP ] ; then
 	
 	# apply patches if any are provided
 	if [ -d "../patches/$PHP" ] ; then
+	    echo "applying patches..."
 	    cd $PHP
 	    for f in ../../patches/$PHP/*.patch
 	    do
+                echo "  applying $f"
 	        git apply $f
 	    done
 	    cd ..
