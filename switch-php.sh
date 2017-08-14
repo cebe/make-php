@@ -38,34 +38,47 @@ if [ ! "$1" = "--reset" ] ; then
 fi
 
 echo "removing existing alternatives..."
+update-alternatives --auto php
 for p in $(update-alternatives --list php | grep "$PHPDIR") ; do
 	update-alternatives --remove php $p
 done
+update-alternatives --auto phpize
 for p in $(update-alternatives --list phpize | grep "$PHPDIR") ; do
 	update-alternatives --remove phpize $p
 done
+update-alternatives --auto php-config
 for p in $(update-alternatives --list php-config | grep "$PHPDIR") ; do
 	update-alternatives --remove php-config $p
 done
+update-alternatives --auto php-cgi
 for p in $(update-alternatives --list php-cgi | grep "$PHPDIR") ; do
 	update-alternatives --remove php-cgi $p
+done
+update-alternatives --auto php-fpm
+for p in $(update-alternatives --list php-fpm | grep "$PHPDIR") ; do
+	update-alternatives --remove php-fpm $p
 done
 echo "done."
 
 if [ ! "$1" = "--reset" ] ; then
 	echo "switching PHP to $1..."
 
-	update-alternatives --install /usr/bin/php php $PHPDIR/$1/bin/php 70 \
+	update-alternatives --install /usr/bin/php php $PHPDIR/$1/bin/php 10 \
 	                    --slave /usr/share/man/man1/php.1.gz php.1.gz $PHPDIR/$1/man/man1/php.1
-	update-alternatives --install /usr/bin/phpize phpize $PHPDIR/$1/bin/phpize 70 \
+	update-alternatives --set php $PHPDIR/$1/bin/php
+	update-alternatives --install /usr/bin/phpize phpize $PHPDIR/$1/bin/phpize 10 \
 	                    --slave /usr/share/man/man1/phpize.1.gz phpize.1.gz $PHPDIR/$1/man/man1/phpize.1
-	update-alternatives --install /usr/bin/php-config php-config $PHPDIR/$1/bin/php-config 70 \
+	update-alternatives --set phpize $PHPDIR/$1/bin/phpize
+	update-alternatives --install /usr/bin/php-config php-config $PHPDIR/$1/bin/php-config 10 \
 	                    --slave /usr/share/man/man1/php-config.1.gz php-config.1.gz $PHPDIR/$1/man/man1/php-config.1
-	update-alternatives --install /usr/bin/php-cgi php-cgi $PHPDIR/$1/bin/php-cgi 70 \
+	update-alternatives --set php-config $PHPDIR/$1/bin/php-config
+	update-alternatives --install /usr/bin/php-cgi php-cgi $PHPDIR/$1/bin/php-cgi 10 \
 	                    --slave /usr/share/man/man1/php-cgi.1.gz php-cgi.1.gz $PHPDIR/$1/man/man1/php-cgi.1
+	update-alternatives --set php-cgi $PHPDIR/$1/bin/php-cgi
 	if [ -f $PHPDIR/$1/sbin/php-fpm ] ; then
-		update-alternatives --install /usr/sbin/php-fpm php-fpm $PHPDIR/$1/sbin/php-fpm 70 \
+		update-alternatives --install /usr/sbin/php-fpm php-fpm $PHPDIR/$1/sbin/php-fpm 10 \
 		            --slave /usr/share/man/man8/php-fpm.8.gz php-fpm.8.gz $PHPDIR/$1/man/man8/php-fpm.8
+		update-alternatives --set php-fpm $PHPDIR/$1/bin/php-fpm
 	fi
 
 	echo "done."
